@@ -1,0 +1,135 @@
+/* ================================================================
+   L&M TECHNIC ENERGY — V31.3.11
+   MOBILE PORTRAIT FIT — WSZYSTKIE GAŁĘZIE
+   Zasada MASTER: karta zawsze startuje dopasowana do szerokości ekranu
+   w pionie. Bez poziomego rozjeżdżania dokumentu. Nadmiar wysokości
+   przewijamy góra/dół. Natywny pinch-zoom pozostaje dostępny.
+   ================================================================ */
+:root{--lm-mobile-max:941px}
+html{
+  width:100%;min-width:0;max-width:100%;background:#000;
+  overflow-x:hidden!important;overflow-y:auto!important;
+  -webkit-text-size-adjust:100%;text-size-adjust:100%;
+  touch-action:pan-y pinch-zoom;
+}
+body{
+  width:100%;min-width:0;max-width:100%;margin:0;background:#000;
+  overflow-x:hidden!important;overflow-y:auto!important;
+  overscroll-behavior-x:none;-webkit-overflow-scrolling:touch;
+  touch-action:pan-y pinch-zoom;
+}
+#app{
+  width:100%!important;min-width:0!important;max-width:100vw!important;
+  min-height:100dvh;background:#000;overflow-x:hidden!important;overflow-y:visible!important;
+  margin:0 auto!important;padding:0!important;
+}
+#app>*{min-width:0!important;max-width:100%!important}
+
+/* Każda główna karta/gałąź ma wejść w szerokość telefonu. */
+.screen,.screen.portrait,.screen.landscape,
+.sup-v10,.cli-v13,.cli-form-v13,
+.v15-screen,.v18-screen,.v20-second,.v21-home,.v21-crop,
+.v26-history-screen,.v28-history-screen,.v30-settings,.v31-inv,
+.eu31,.v34-settings,.lm-live-module,.v316-report,.v23-bp-screen{
+  width:100%!important;min-width:0!important;max-width:100%!important;
+  margin-left:auto!important;margin-right:auto!important;zoom:1!important;
+}
+.screen img,.sup-v10>.master-art,.cli-v13>.master-art,.cli-form-v13>.master-art,
+.v21-home img,.v21-crop img{
+  width:100%!important;max-width:100%!important;height:auto!important;
+}
+.summary-panel{width:100%!important;max-width:100%!important;margin-left:0!important;margin-right:0!important}
+
+/* Dokument nigdy nie wymusza poziomego przesuwania całej aplikacji. */
+.screen,.sup-v10,.cli-v13,.cli-form-v13,.v15-screen,.v18-screen,.v20-second,
+.v26-history-screen,.v28-history-screen,.v30-settings,.v31-inv,.eu31,.v34-settings,
+.lm-live-module,.v316-report{overflow-x:hidden!important}
+
+/* Drobne podglądy/tabele mogą mieć własny lokalny przesuw, ale nie rozszerzają strony. */
+.v28-table-scroll,.v31-items-wrap,.v34-table-wrap,.lm-table-wrap,.v31-preview-shell{
+  max-width:100%!important;overflow-x:auto!important;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch
+}
+.v31-preview-shell{overflow-x:hidden!important}
+.v31-canvas{width:100%!important;max-width:100%!important;height:auto!important}
+
+/* Natywne gesty: pionowy scroll + dwoma palcami zoom. */
+#app,.screen,.sup-v10,.cli-v13,.cli-form-v13,.v15-screen,.v18-screen,.v20-second,
+.v26-history-screen,.v28-history-screen,.v30-settings,.v31-inv,.eu31,.v34-settings,
+.lm-live-module,.lm-master-home,.v316-home{touch-action:pan-y pinch-zoom!important}
+button,.hot,.cli-hot,.sup-hot,.v15-btn,.v18-btn,.v20-btn,.v31-btn,.eu31 button,.lm-btn,
+.lm-master-hot,.lm-master-tile{touch-action:manipulation!important}
+
+/* Pulpit MASTER — proporcje bez deformacji, szerokość telefonu, pionowy dokument. */
+.lm-master-home{
+  width:100%!important;max-width:100%!important;min-width:0!important;
+  height:auto!important;min-height:0!important;aspect-ratio:941/1594!important;
+  overflow:hidden!important;margin:0 auto!important
+}
+.lm-master-home-art{width:100%!important;height:100%!important;object-fit:fill!important}
+
+@media(max-width:700px){
+  /* Nagłówki dynamicznych gałęzi — zero stałych kolumn 941px. */
+  .v15-head,.v18-top,.v20-top,.v31-head,.v30-set-head{
+    width:100%!important;min-width:0!important;height:auto!important;min-height:72px!important;
+    grid-template-columns:76px minmax(0,1fr) 78px!important;gap:6px!important;padding:8px!important
+  }
+  .v15-logo,.v18-brand,.v20-brand,.v31-brand,.v30-set-brand{font-size:15px!important;line-height:1!important}
+  .v15-logo span,.v18-brand small,.v20-brand small,.v31-brand small,.v30-set-brand small{font-size:7px!important;letter-spacing:.7px!important;margin-top:3px!important}
+  .v15-title,.v18-heading h1,.v20-heading h1,.v31-title h1,.v30-set-title h1{font-size:18px!important;line-height:1.05!important}
+  .v15-title small,.v18-heading p,.v20-heading p,.v31-title p,.v30-set-title p{font-size:8px!important;margin-top:3px!important;letter-spacing:0!important}
+  .v15-back,.v18-back,.v20-back,.v31-back,.v30-set-back{min-height:42px!important;height:42px!important;font-size:11px!important;padding:4px!important}
+
+  .v15-body,.v18-body,.v20-body,.v26-history-body,.v28-history-body,.v31-body,.v30-set-body{padding:8px!important;gap:8px!important}
+  .v15-grid2,.v18-grid,.v20-grid,.v29-gen-grid{grid-template-columns:1fr!important;gap:8px!important}
+  .v15-row,.v18-row,.v20-row,.v31-grid2{grid-template-columns:1fr!important;gap:7px!important}
+  .v31-grid3,.v31-grid4{grid-template-columns:1fr 1fr!important;gap:7px!important}
+  .v15-actions,.v20-actions,.v31-btnrow{grid-template-columns:1fr 1fr!important;gap:7px!important}
+  .v20-kpis,.v15-kpis,.v30-set-status{grid-template-columns:1fr 1fr!important;gap:7px!important}
+  .v18-actions{grid-template-columns:1fr 1fr!important;gap:7px!important}
+  .v26-map-routebar{grid-template-columns:1fr 1fr!important;gap:7px!important}
+  .v26-map-frame,.v27-map-screen .v26-map-frame{height:52dvh!important;min-height:340px!important}
+
+  .v15-panel,.v18-card,.v20-card,.v31-card,.v30-set-card,.v26-history-card,.v28-history-card{padding:9px!important;border-radius:10px!important}
+  .v15-panel h3,.v18-card h2,.v20-card h2,.v31-card h2,.v30-set-card h2,.v26-history-card h2,.v28-history-tools h2{font-size:16px!important;margin-bottom:8px!important}
+  .v15-input,.v15-select,.v20-input,.v20-select,.v31-field input,.v31-field select,.v31-field textarea{font-size:14px!important;min-height:42px!important}
+
+  /* Historia / Magazyn PDF — foldery czytelne w pionie. */
+  .v26-history-folders,.v28-history-folders{grid-template-columns:1fr!important;gap:7px!important}
+  .v26-folder,.v28-folder{min-height:70px!important;padding:9px!important}
+  .v28-history-tools,.v26-history-tools{align-items:flex-start!important;flex-direction:column!important;gap:6px!important}
+  .v28-history-table{width:900px!important;min-width:900px!important}
+
+  /* Faktury — najważniejsza poprawka z ekranu 27.08: cała karta mieści się w pionie. */
+  .v31-inv{width:100%!important;min-width:0!important}
+  .v31-totals{grid-template-columns:1fr!important;gap:6px!important}
+  .v31-master-bar{gap:6px!important;padding:8px!important;flex-wrap:wrap!important}
+  .v31-master-bar b{font-size:14px!important}.v31-master-bar span{font-size:9px!important}
+  .v31-items{min-width:760px!important}
+
+  /* Starsze ustawienia — również natywnie pionowo. */
+  .v30-set-actions{grid-template-columns:1fr!important;gap:8px!important}
+  .v30-app-icon{width:76px!important;height:76px!important;margin:0 10px 6px 0!important}
+
+  /* Klienci: grafika MASTER i warstwa LIVE skalują się razem. */
+  .cli-v13,.cli-form-v13{width:100%!important;min-width:0!important}
+  .cli-v13>.master-art,.cli-form-v13>.master-art{width:100%!important;height:auto!important}
+  .cli-search{font-size:clamp(8px,2.6vw,13px)!important}
+  .cli-filter{font-size:clamp(7px,2.35vw,12px)!important}
+  .cli-table-head,.cli-row{font-size:clamp(6px,2vw,10px)!important}
+
+  /* Nowe gałęzie Zamówienia / Produkcja / Magazyn — wygodna pionowa praca. */
+  .lm-live-head{position:sticky!important;top:0!important}
+  .lm-live-grid,.lm-live-grid.three{grid-template-columns:1fr!important}
+  .lm-live-kpis{grid-template-columns:1fr 1fr!important}
+  .lm-table{min-width:700px!important}
+
+  /* Raport i ekran biznesplanu. */
+  .v316-report{padding:9px!important}.v316-report .grid{grid-template-columns:1fr!important}
+  .v23-bp-screen{width:100%!important;padding:7px 5px 18px!important}.v23-bp-wrap{max-width:100%!important}
+}
+
+/* Tryb poziomy nie jest trybem roboczym. Jeśli urządzenie zostanie obrócone,
+   aplikacja nadal trzyma szerokość dokumentu i nie tworzy poziomego canvasa. */
+@media(orientation:landscape) and (max-height:700px){
+  #app{max-width:min(100vw,var(--lm-mobile-max))!important;margin:0 auto!important}
+}

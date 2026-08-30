@@ -1,0 +1,164 @@
+{
+  "version": "RYNKI-EU-LIVE-2026-08-28-V31328",
+  "generated_at": "2026-08-28T22:05:00+02:00",
+  "notes": "Aktualizacja RYNKI EU bez zmian grafiki MASTER MAGAZYNU. HASSLACHER dodany jako nowy dostawca klasy A; PeletTOP aktualizowany bez duplikatu; BIOEKO NORD oznaczany alarmem; EKODREWNO otrzymuje follow-up, jeśli rekord istnieje.",
+  "decision_rules": {
+    "decision_lock_enabled": true,
+    "price_alarm_percent": 25,
+    "required_fields": [
+      "verified_contractor",
+      "enplus_id",
+      "written_price",
+      "valid_until",
+      "offer_volume",
+      "incoterm"
+    ],
+    "blocked_label": "⚠ DANE NIEPOTWIERDZONE — DECYZJA ZABLOKOWANA"
+  },
+  "upserts": [
+    {
+      "id": "at-hasslacher-biopellets-20260828",
+      "match_names": [
+        "HASSLACHER BioPellets",
+        "HASSLACHER NORICA TIMBER",
+        "NORICA TIMBER Vertrieb GmbH"
+      ],
+      "company": "HASSLACHER BioPellets",
+      "country": "AT",
+      "city": "Sachsenburg",
+      "address": "Feistritz 1, 9751 Sachsenburg",
+      "type": "supplier",
+      "role": "PRODUCENT/DOSTAWCA",
+      "business_model": "B2B",
+      "status": "DO WYCENY",
+      "crm_status": "NOWY",
+      "priority": "A",
+      "product": "ENplus A1 • 15 kg • Big Bag • pellet luzem",
+      "enplus_id": "AT010",
+      "cert": "ENplus A1",
+      "verified_contractor": true,
+      "phone": "+43 4769 2249-0",
+      "email": "info@hasslacher.com",
+      "website": "https://www.hasslacher.com/pellets",
+      "packaging": "15 kg/worek; 70/72 worki na palecie; 1050/1080 kg/paleta; Big Bag ok. 1000 kg; luzem/cysterna 3–25 t",
+      "offer_volume": null,
+      "written_price": null,
+      "valid_until": null,
+      "incoterm": null,
+      "target_request": "1 / 5 / 10 samochodów miesięcznie; osobno 15 kg i luzem; EXW/FCA; regularny kontrakt",
+      "follow_up": "Pozyskać pisemną ofertę 1/5/10 aut miesięcznie, 15 kg i luzem, EXW/FCA, dostępność, płatność i możliwość stałego kontraktu.",
+      "decision_lock": true,
+      "date_added": "2026-08-28T20:00:00+02:00",
+      "date_updated": "2026-08-28T22:05:00+02:00",
+      "source": "HASSLACHER — oficjalna strona producenta",
+      "source_url": "https://www.hasslacher.com/pellets"
+    },
+    {
+      "id": "cz-pelettop-20260828",
+      "match_names": [
+        "PeletTOP",
+        "Pelet Top"
+      ],
+      "company": "PeletTOP",
+      "country": "CZ",
+      "type": "supplier",
+      "role": "DOSTAWCA/HURTOWNIK",
+      "status": "BENCHMARK / DO NEGOCJACJI",
+      "crm_status": "AKTUALIZACJA",
+      "priority": "B",
+      "product": "ENplus A1 Standard • worki 15 kg • paleta 1050 kg",
+      "verified_contractor": true,
+      "price_source_type": "PUBLIC_WEB_BENCHMARK",
+      "currency": "CZK",
+      "price_basis": "CZK/t z dostawą w kraju morawsko-śląskim",
+      "price_ladder": [
+        {
+          "min_pallets": 1,
+          "max_pallets": 5,
+          "price_per_t": 11300
+        },
+        {
+          "min_pallets": 6,
+          "max_pallets": 10,
+          "price_per_t": 11200
+        },
+        {
+          "min_pallets": 11,
+          "max_pallets": 20,
+          "price_per_t": 11000
+        },
+        {
+          "min_pallets": 21,
+          "max_pallets": null,
+          "price_per_t": null,
+          "note": "cena indywidualna"
+        }
+      ],
+      "written_price": null,
+      "valid_until": null,
+      "offer_volume": null,
+      "incoterm": null,
+      "decision_lock": true,
+      "date_updated": "2026-08-28T22:05:00+02:00",
+      "source": "PeletTOP — oficjalna oferta internetowa",
+      "source_url": "https://pelettop.cz/produkty/pelety-enplus-a1-standart",
+      "notes": "AKTUALIZUJ ISTNIEJĄCY REKORD — NIE DUPLIKUJ. 1–5 palet: 11 300 CZK/t; 6–10: 11 200 CZK/t; 11–20: 11 000 CZK/t; 21+ negocjacja."
+    }
+  ],
+  "conditional_updates": [
+    {
+      "match_names": [
+        "BIOEKO NORD",
+        "Bioeko Nord"
+      ],
+      "fields": {
+        "status": "ALARM / NIEZWERYFIKOWANE",
+        "price_alarm": "RED",
+        "decision_lock": true,
+        "verified_contractor": false,
+        "notes": "CZERWONY ALARM: deklarowane poziomy 258–388 PLN/t nie mogą być używane do decyzji zakupowej bez weryfikacji producenta, ENplus ID, dokumentów firmy, pisemnej oferty i bezpiecznych warunków płatności.",
+        "date_updated": "2026-08-28T22:05:00+02:00"
+      }
+    },
+    {
+      "match_names": [
+        "EKODREWNO",
+        "EkoDrewno",
+        "Ekodrewno"
+      ],
+      "fields": {
+        "priority": "A",
+        "status": "FOLLOW-UP PRIORYTETOWY",
+        "follow_up": "Pozyskać jedną tabelę: 1 auto / 5 aut / 10 aut miesięcznie → FCA → DAP Kielce → termin płatności → dostępność → private label.",
+        "target_request": "1 / 5 / 10 aut miesięcznie; FCA; DAP Kielce; płatność; dostępność; private label",
+        "date_updated": "2026-08-28T22:05:00+02:00"
+      }
+    }
+  ],
+  "market_intel": [
+    {
+      "country": "DE",
+      "name": "Holzhof Dresden",
+      "segment": "visible-retail-market",
+      "price": 7.28,
+      "currency": "EUR",
+      "unit": "15 kg bag gross",
+      "date": "2026-08-28",
+      "use": "benchmark_only",
+      "note": "Benchmark rynku widocznego, nie cena hurtowa L&M."
+    },
+    {
+      "country": "DE",
+      "name": "Berlin/Brandenburg/Saxony distributor benchmark",
+      "segment": "regional-distribution",
+      "price": 399,
+      "currency": "EUR",
+      "unit": "990 kg pallet gross",
+      "approx_eur_per_t_gross": 403,
+      "volume": "8+ pallets",
+      "date": "2026-08-28",
+      "use": "benchmark_only",
+      "note": "Benchmark rynku widocznego, nie cena hurtowa L&M."
+    }
+  ]
+}

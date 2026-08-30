@@ -1,0 +1,6 @@
+{
+  "version": "V31.3.38",
+  "build": "2026-08-30T16:43:00+02:00",
+  "notes": "REPO CLEAN + MAGAZYN RESET: usunięto wszystkie stare pliki, nakładki, grafiki i dane testowe gałęzi MAGAZYN oraz historyczne hotfixy/backupy z katalogu głównego. MAGAZYN startuje od zera. PRODUKCJA MASTER V31.3.31 pozostaje bez zmian.",
+  "label": "REPO CLEAN + MAGAZYN RESET"
+}

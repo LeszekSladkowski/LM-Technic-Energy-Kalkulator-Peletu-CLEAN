@@ -1,0 +1,38 @@
+{
+  "schema": "lm-technic-energy-market-intel-v1",
+  "version": "2026.08.27-1",
+  "generated_at": "2026-08-27T21:45:00+02:00",
+  "update_mode": "same-origin-json-live",
+  "benchmarks": [
+    {
+      "id": "plde-pellets2go-2026-08-27",
+      "scope": "PL/DE",
+      "company": "Pellets2Go",
+      "date": "2026-08-27",
+      "kind": "PUBLIC_PRICE_BENCHMARK",
+      "product": "Niemiecki pellet ENplus A1",
+      "public_price": {
+        "amount": 1554.3,
+        "currency": "PLN",
+        "vat": "gross",
+        "unit": "pallet",
+        "pallet_kg": 990,
+        "bags": 66,
+        "bag_kg": 15
+      },
+      "derived": {
+        "gross_pln_t": 1570.0,
+        "net_pln_t_23vat": 1276.42
+      },
+      "contacts": {
+        "PL": "+48 573 502 645",
+        "DE": "+49 163 0390025"
+      },
+      "note": "BENCHMARK PL/DE — 27.08.2026. Cena publiczna paletowa, nie cena samochodowa. Przed użyciem handlowym potwierdzić producenta, ENplus ID i cenę pełnego samochodu."
+    }
+  ],
+  "rules": {
+    "public_price_is_not_contract_price": true,
+    "decision_gate": "Do decyzji SPRZEDAJ / NEGOCJUJ / ODRZUĆ wymagaj pisemnej ceny pełnego auta oraz rzeczywistego TARGET DAP odbiorcy."
+  }
+}

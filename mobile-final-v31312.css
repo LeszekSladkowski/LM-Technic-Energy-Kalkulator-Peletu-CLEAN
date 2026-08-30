@@ -1,0 +1,144 @@
+/* ================================================================
+   L&M TECHNIC ENERGY — V31.3.12
+   MOBILE FINAL FIT — chirurgiczna korekta S24 Ultra / portrait
+
+   ZASADY:
+   1) Pulpit MASTER wypełnia wysokość roboczego ekranu w pionie.
+   2) Gałęzie robocze startują od pełnej szerokości telefonu.
+   3) Nadmiar treści idzie pionowo góra/dół.
+   4) Tabele i szerokie podglądy mają własny poziomy przesuw.
+   5) Pinch-zoom 0.5–5x pozostaje aktywny w całej aplikacji.
+   6) Nie zmieniamy grafiki MASTER ani logiki funkcji.
+   ================================================================ */
+
+html,body{
+  width:100%;min-width:0;max-width:none!important;
+  overflow-x:auto!important;overflow-y:auto!important;
+  touch-action:pan-x pan-y pinch-zoom!important;
+  overscroll-behavior-x:contain;
+  -webkit-overflow-scrolling:touch;
+}
+#app{
+  width:100%!important;min-width:0!important;max-width:100vw!important;
+  min-height:100dvh!important;margin:0 auto!important;
+  overflow-x:visible!important;overflow-y:visible!important;
+  touch-action:pan-x pan-y pinch-zoom!important;
+}
+
+/* ================================================================
+   1. PULPIT STARTOWY MASTER — FULL SCREEN PORTRAIT FIT
+   Źródłowa grafika i hotspoty pozostają 1:1 logicznie; warstwa jest
+   rozciągana razem z hotspotami do dostępnej wysokości viewportu.
+   ================================================================ */
+.lm-master-home{
+  width:100vw!important;max-width:100vw!important;
+  height:100dvh!important;min-height:100dvh!important;
+  aspect-ratio:auto!important;
+  margin:0!important;overflow:hidden!important;
+  touch-action:pan-y pinch-zoom!important;
+}
+.lm-master-home-art{
+  width:100%!important;height:100%!important;object-fit:fill!important;
+}
+.lm-master-tile,.lm-master-hot{min-width:0!important;min-height:0!important}
+
+/* ================================================================
+   2. TRANSPORT — koniec obciętej prawej strony
+   ================================================================ */
+.v18-screen{width:100%!important;min-width:0!important;max-width:100vw!important;overflow-x:hidden!important}
+.v18-top,.v18-body,.v18-card,.v18-route,.v18-field,.v18-paramgrid,.v18-mini,.v18-kpis,.v18-bottom{min-width:0!important;max-width:100%!important}
+.v18-input,.v18-select{min-width:0!important;max-width:100%!important}
+.v18-routehead>div:last-child,.v18-switchcopy{min-width:0!important;overflow-wrap:anywhere}
+.v18-address,.v18-summary,.v18-help{overflow-wrap:anywhere;word-break:normal}
+
+/* ================================================================
+   3. DOSTAWCY / KLIENCI — MASTER zachowany, czytelność i przesuw
+   ================================================================ */
+.sup-v10,.cli-v13,.cli-form-v13{width:100%!important;min-width:0!important;max-width:100vw!important;overflow-x:visible!important}
+.sup-v10>.master-art,.cli-v13>.master-art,.cli-form-v13>.master-art{width:100%!important;max-width:100%!important;height:auto!important}
+.sup-v10 .table-wrap{overflow-x:auto!important;overflow-y:hidden!important;touch-action:pan-x pan-y pinch-zoom!important}
+.sup-v10 .table-head,.sup-v10 .supplier-row{min-width:720px!important}
+.sup-v10 .rows{overflow-x:visible!important}
+.sup-v10 .detail-v10{overflow:auto!important;touch-action:pan-x pan-y pinch-zoom!important}
+.sup-v10 .detail-col{min-width:0!important;overflow:auto!important}
+.sup-v10 .dname,.sup-v10 .dline,.sup-v10 .notes,.sup-v10 .action-label{overflow-wrap:anywhere;word-break:normal}
+.cli-table{overflow-x:auto!important;overflow-y:hidden!important;touch-action:pan-x pan-y pinch-zoom!important}
+.cli-table-head,.cli-row{min-width:600px!important}
+.cli-rows{overflow-x:visible!important}
+.cli-detail{touch-action:pan-y pinch-zoom!important}
+.cli-detail .dhead>div{min-width:0!important}
+.cli-detail .dname,.cli-detail .dtype,.cli-detail .line span:last-child,.cli-detail .loc{overflow-wrap:anywhere;word-break:normal}
+.cli-detail .dname{font-size:clamp(14px,3.2vw,20px)!important}
+.cli-legend{overflow:auto!important;touch-action:pan-x pan-y pinch-zoom!important}
+
+/* ================================================================
+   4. HISTORIA / MAGAZYN PDF — nagłówek bez ucięcia + lokalna tabela
+   ================================================================ */
+.v28-history-screen,.v26-history-screen{width:100%!important;min-width:0!important;max-width:100vw!important;overflow-x:hidden!important}
+.v28-history-screen .v15-head{grid-template-columns:68px minmax(0,1fr) 80px!important;gap:5px!important;padding:7px 8px!important;min-height:76px!important;height:auto!important}
+.v28-history-screen .v15-title{font-size:clamp(18px,5.4vw,23px)!important;line-height:1.02!important;white-space:normal!important;overflow-wrap:anywhere!important}
+.v28-history-screen .v15-title small{font-size:clamp(8px,2.55vw,11px)!important;line-height:1.1!important;white-space:normal!important}
+.v28-history-body{padding:9px!important}
+.v28-table-scroll,.v28-history-table-wrap,.v26-history-table-wrap{width:100%!important;max-width:100%!important;overflow-x:auto!important;touch-action:pan-x pan-y pinch-zoom!important;-webkit-overflow-scrolling:touch}
+.v28-history-table{width:760px!important;min-width:760px!important}
+.v28-history-table th{font-size:11px!important;padding:9px 7px!important}.v28-history-table td{font-size:12px!important;padding:9px 7px!important}
+
+/* ================================================================
+   5. FAKTURY — formularz 100% szerokości + MASTER fit-to-width
+   ================================================================ */
+.v31-inv{width:100%!important;min-width:0!important;max-width:100vw!important;overflow-x:hidden!important}
+.v31-head{width:100%!important;min-width:0!important;grid-template-columns:68px minmax(0,1fr) 82px!important;gap:5px!important;padding:7px 8px!important;height:auto!important;min-height:76px!important}
+.v31-brand{font-size:15px!important;min-width:0!important}.v31-brand small{font-size:7px!important;letter-spacing:.5px!important}
+.v31-title{min-width:0!important}.v31-title h1{font-size:clamp(18px,5.1vw,22px)!important;line-height:1.02!important;white-space:normal!important;overflow-wrap:anywhere!important}.v31-title p{font-size:8px!important;line-height:1.1!important;white-space:normal!important}
+.v31-back{height:44px!important;min-width:0!important;font-size:11px!important;padding:4px!important}
+.v31-body{padding:9px!important;gap:9px!important}.v31-card{min-width:0!important;max-width:100%!important;padding:10px!important;overflow:hidden!important}
+.v31-grid2{grid-template-columns:1fr!important;gap:8px!important}.v31-grid3,.v31-grid4{grid-template-columns:1fr 1fr!important;gap:7px!important}
+.v31-field{min-width:0!important}.v31-field input,.v31-field select,.v31-field textarea{min-width:0!important;max-width:100%!important;font-size:13px!important}
+.v31-bank-field input[readonly]{font-size:clamp(12px,3.6vw,16px)!important;letter-spacing:.15px!important}
+.v31-items-wrap{width:100%!important;max-width:100%!important;overflow-x:auto!important;touch-action:pan-x pan-y pinch-zoom!important;-webkit-overflow-scrolling:touch}
+.v31-items{width:720px!important;min-width:720px!important}
+.v31-preview-shell{width:100%!important;max-width:100%!important;overflow:auto!important;padding:6px!important;touch-action:pan-x pan-y pinch-zoom!important;-webkit-overflow-scrolling:touch}
+.v31-canvas{display:block!important;width:100%!important;max-width:100%!important;height:auto!important;margin:0 auto!important;touch-action:pan-x pan-y pinch-zoom!important}
+.v31-master-bar{flex-wrap:wrap!important}.v31-master-bar b{font-size:13px!important}.v31-master-bar span{font-size:9px!important;overflow-wrap:anywhere}
+
+/* ================================================================
+   6. MAPA DOSTAW — sekcje w pionie, żadnego trzeciego uciętego kafla
+   ================================================================ */
+.v27-map-screen{width:100%!important;min-width:0!important;max-width:100vw!important;overflow-x:hidden!important}
+.v27-map-screen .v15-body{padding:9px!important}.v27-map-screen .v15-panel,.v27-map-screen .v26-map-shell{padding:10px!important;margin-bottom:9px!important}
+.v27-map-selectgrid,.v27-map-refresh,.v27-dest-layout{grid-template-columns:1fr!important;gap:8px!important}
+.v27-mini-actions{grid-template-columns:1fr 1fr!important;gap:8px!important}
+.v27-map-screen .v15-dest{min-height:88px!important;padding:12px!important}.v27-map-screen .v15-dest .name{font-size:21px!important}.v27-map-screen .v15-dest .addr{font-size:15px!important}
+.v27-map-screen .v15-navbig{font-size:18px!important;min-height:58px!important}
+.v27-map-screen .v26-map-frame{height:52dvh!important;min-height:360px!important;max-height:620px!important}
+.v27-map-screen .v26-map-routebar{grid-template-columns:1fr 1fr!important;gap:8px!important}
+.v27-map-screen .v26-map-routebar .v15-field{grid-column:1/-1!important}
+.v27-map-screen .v26-map-routebar .v15-btn{min-width:0!important;white-space:normal!important;font-size:14px!important;padding:8px!important}
+
+/* ================================================================
+   7. TELEFON — dopracowanie wszystkich powyższych modułów
+   ================================================================ */
+@media(max-width:700px){
+  .v18-grid{grid-template-columns:1fr!important;gap:8px!important}
+  .v18-row,.v18-paramgrid{grid-template-columns:1fr!important;gap:7px!important}
+  .v18-actions2{grid-template-columns:1fr!important;gap:7px!important}
+  .v18-mini{grid-template-columns:1fr 1fr!important;gap:7px!important}
+  .v18-kpis{grid-template-columns:1fr 1fr!important;gap:7px!important}
+  .v18-bottom{grid-template-columns:1fr 1fr!important;gap:7px!important}
+  .v18-bottom>*:last-child{grid-column:1/-1!important}
+  .v18-card{padding:10px!important}.v18-card h2{font-size:18px!important}.v18-btn{font-size:15px!important;min-height:50px!important}
+  .v18-input,.v18-select{height:48px!important;font-size:16px!important}
+  .v18-kpi{min-height:82px!important;padding:10px!important}.v18-kpi b{font-size:21px!important}
+
+  .sup-v10 .table-head{font-size:8px!important}.sup-v10 .supplier-row{font-size:8px!important}
+  .sup-v10 .detail-v10{font-size:clamp(8px,2.05vw,11px)!important}
+  .sup-v10 .legend-v10{font-size:clamp(6px,1.7vw,9px)!important}
+  .cli-table-head,.cli-row{font-size:8px!important}.cli-detail{font-size:clamp(9px,2.35vw,12px)!important}
+
+  .v28-history-folders{grid-template-columns:1fr!important}.v28-folder{min-height:78px!important}
+  .v31-btnrow{grid-template-columns:1fr 1fr!important}.v31-totals{grid-template-columns:1fr!important}
+}
+
+/* Długie teksty nie mogą rozszerzać karty poza telefon. */
+.v18-screen *,.v27-map-screen *,.v28-history-screen *,.v31-inv *,.lm-live-module *{box-sizing:border-box}
+.v18-screen h1,.v18-screen h2,.v18-screen p,.v27-map-screen h1,.v27-map-screen h2,.v27-map-screen h3,.v31-inv h1,.v31-inv h2{overflow-wrap:anywhere}

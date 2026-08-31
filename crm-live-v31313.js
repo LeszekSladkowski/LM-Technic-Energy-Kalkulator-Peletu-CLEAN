@@ -126,55 +126,21 @@ setTimeout(()=>refresh(true),450);
 })();
 
 /* V31.3.38 — R38 LIVE STATS HOTFIX
-   RYNKI EU: statystyki na KARCIE 1 odświeżają się po synchronizacji i zmianach CRM.
+   Po każdym odświeżeniu bazy RYNKI EU karta główna jest renderowana ponownie
+   wyłącznie wtedy, gdy użytkownik właśnie ją ogląda. Statystyki, liczniki krajów,
+   liczba nowych firm i data/wersja bazy są więc zawsze LIVE.
    Brak zmian CSS, proporcji, grafiki i elementów MASTER. */
 (function(){
 'use strict';
-let r38Queued=false;
-function list(v){return Array.isArray(v)?v:[]}
-function marketCode(rec){
-  try{return typeof window.euMarketCountryCodeFromRecord==='function'?window.euMarketCountryCodeFromRecord(rec):''}catch(e){return ''}
-}
-function counts(){
-  let countries=0,suppliers=0,clients=0,offers=0,allClients=[];
+const original=window.eu31Load;
+if(typeof original!=='function'||original.__r38LiveStats)return;
+const wrapped=async function(){
+  const result=await original.apply(this,arguments);
   try{
-    if(typeof window.euMarketsGetActiveCountries==='function')countries=list(window.euMarketsGetActiveCountries()).length;
-    else countries=document.querySelectorAll('.eu31-overview-page .eu31-country').length;
-    const allSuppliers=typeof window.normNewSuppliers==='function'?list(window.normNewSuppliers()):(typeof window.loadSuppliers==='function'?list(window.loadSuppliers()):[]);
-    allClients=typeof window.normalizeClients==='function'?list(window.normalizeClients()):(typeof window.loadClients==='function'?list(window.loadClients()):[]);
-    suppliers=allSuppliers.filter(s=>!!marketCode(s)).length;
-    clients=allClients.filter(c=>!!marketCode(c)).length;
-    const allOffers=typeof window.loadOffers==='function'?list(window.loadOffers()):[];
-    offers=allOffers.filter(o=>{
-      if(!o)return false;
-      if(marketCode(o))return true;
-      const cid=String(o.clientId||'');
-      if(!cid)return false;
-      return allClients.some(c=>c&&String(c.id)===cid&&!!marketCode(c));
-    }).length;
+    if(document.querySelector('.eu31-overview-page')&&typeof window.eu31Home==='function')window.eu31Home(false);
   }catch(e){console.warn('R38 LIVE STATS',e)}
-  return [countries,suppliers,clients,offers];
-}
-function refreshMarketStats(){
-  const page=document.querySelector('.eu31-overview-page');if(!page)return;
-  const nodes=[...page.querySelectorAll('.eu31-summary .eu31-stat b')];if(nodes.length<4)return;
-  const values=counts();
-  values.forEach((v,i)=>{const next=String(v);if(nodes[i]&&nodes[i].textContent!==next)nodes[i].textContent=next});
-  const btn=page.querySelector('#eu31-sync-btn');
-  if(btn&&!btn.dataset.r38LiveStats){
-    btn.dataset.r38LiveStats='1';
-    btn.addEventListener('click',()=>[0,250,750,1500,3000,6000].forEach(ms=>setTimeout(refreshMarketStats,ms)));
-  }
-}
-function queueR38(){
-  if(r38Queued)return;r38Queued=true;
-  requestAnimationFrame(()=>{r38Queued=false;refreshMarketStats()});
-}
-const app=document.getElementById('app');
-if(app)new MutationObserver(queueR38).observe(app,{childList:true,subtree:true});
-window.addEventListener('storage',queueR38);
-window.addEventListener('pageshow',queueR38);
-document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')queueR38()});
-window.r38RefreshMarketStats=refreshMarketStats;
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',queueR38,{once:true});else queueR38();
+  return result;
+};
+wrapped.__r38LiveStats=true;
+window.eu31Load=wrapped;
 })();

@@ -124,23 +124,3 @@ document.addEventListener('visibilitychange',()=>{if(document.visibilityState===
 setInterval(()=>refresh(true),15*60*1000);
 setTimeout(()=>refresh(true),450);
 })();
-
-/* V31.3.38 — R38 LIVE STATS HOTFIX
-   Po każdym odświeżeniu bazy RYNKI EU karta główna jest renderowana ponownie
-   wyłącznie wtedy, gdy użytkownik właśnie ją ogląda. Statystyki, liczniki krajów,
-   liczba nowych firm i data/wersja bazy są więc zawsze LIVE.
-   Brak zmian CSS, proporcji, grafiki i elementów MASTER. */
-(function(){
-'use strict';
-const original=window.eu31Load;
-if(typeof original!=='function'||original.__r38LiveStats)return;
-const wrapped=async function(){
-  const result=await original.apply(this,arguments);
-  try{
-    if(document.querySelector('.eu31-overview-page')&&typeof window.eu31Home==='function')window.eu31Home(false);
-  }catch(e){console.warn('R38 LIVE STATS',e)}
-  return result;
-};
-wrapped.__r38LiveStats=true;
-window.eu31Load=wrapped;
-})();

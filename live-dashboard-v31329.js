@@ -105,3 +105,23 @@ document.addEventListener('change',()=>{if(document.querySelector('.v15-screen')
 window.addEventListener('storage',schedule);window.addEventListener('pageshow',schedule);
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',schedule,{once:true});else schedule();
 })();
+
+/* V31.3.38 — R38 LIVE STATS HOTFIX
+   Po każdym odświeżeniu bazy RYNKI EU karta główna jest renderowana ponownie
+   wyłącznie wtedy, gdy użytkownik właśnie ją ogląda. Dzięki temu istniejące
+   statystyki MASTER, liczniki krajów, liczba nowych firm i data/wersja bazy
+   pokazują aktualne dane bez zmiany wyglądu, CSS ani układu. */
+(function(){
+'use strict';
+const original=window.eu31Load;
+if(typeof original!=='function'||original.__r38LiveStats)return;
+const wrapped=async function(){
+  const result=await original.apply(this,arguments);
+  try{
+    if(document.querySelector('.eu31-overview-page')&&typeof window.eu31Home==='function')window.eu31Home(false);
+  }catch(e){console.warn('R38 LIVE STATS',e)}
+  return result;
+};
+wrapped.__r38LiveStats=true;
+window.eu31Load=wrapped;
+})();

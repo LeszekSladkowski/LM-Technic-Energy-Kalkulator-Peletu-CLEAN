@@ -1,27 +1,13 @@
 {
-  "version": "2026-08-27.1",
-  "updated_at": "2026-08-27T21:45:00+02:00",
+  "version": "2026-09-04-live-sync-hotfix",
+  "generated_at": "2026-09-04T07:42:00+02:00",
   "messages": [
     {
-      "date": "27.08.2026",
-      "time": "21:45",
-      "icon": "🎯",
-      "label": "PRIORYTET A — HURT-PELLET / SYNTIRA",
-      "text": "Nowy dostawca B2B. Zdobyć pisemną tabelę 1 / 5 / 10 aut miesięcznie: producent + ENplus ID, FCA/odbiór własny i DAP Kielce, masa palety, płatność oraz dostępność wrzesień–październik."
-    },
-    {
-      "date": "27.08.2026",
-      "time": "21:44",
-      "icon": "🇨🇿",
-      "label": "ECOPELETY — PRODUCENT CZ",
-      "text": "Pozyskać cenę producenta dla pełnego samochodu i kontraktu miesięcznego. Publicznej ceny palety nie wpisywać jako ceny zakupu L&M."
-    },
-    {
-      "date": "27.08.2026",
-      "time": "21:43",
-      "icon": "📊",
-      "label": "BENCHMARK + NEGOCJACJA",
-      "text": "Pellets2Go zapisany jako benchmark PL/DE. Kalkulator porównuje CENĘ PUBLICZNĄ z KONTRAKTOWĄ i pokazuje różnicę PLN/t, %, PLN/samochód oraz PLN dla wybranego wolumenu miesięcznego."
+      "id": "crm-live-sync-20260904",
+      "date": "2026-09-04",
+      "priority": "HIGH",
+      "title": "RYNKI EU — synchronizacja LIVE naprawiona",
+      "text": "Zaktualizowano zdalny feed RYNKI EU. Po publikacji GitHub Pages odśwież gałąź RYNKI EU. Nowe leady klientów i dostawców są oznaczone jako dane do weryfikacji i nie nadpisują lokalnej historii negocjacji ani cen kontraktowych."
     }
   ]
 }
